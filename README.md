@@ -74,3 +74,22 @@ You have completed the foundational stack for **Applied AI in SRE**. Below is a 
     *   *Precision Formula:* `TP / (TP + FP)`
 
 ---
+added a local ai agent on my samsung a9 tablet using termux and qwen3.5:0.8b model
+the following commands used
+1 termux-wake-lock
+2 OLLAMA_HOST=0.0.0.0 ollama serve &
+3 ollama pull qwen3.5:0.8b
+4 ollama run qwen3.5:0.8b
+5 curl http://IP:11434/api/generate -d '{
+  "model": "qwen3.5:0.8b",
+  "prompt": "Explain recursion like I am a beginner",
+  "think": false,
+  "stream": false
+}'
+6 docker run -d -p 3000:8080 \
+  -e OLLAMA_BASE_URL=http://192.168.1.10:11434 \
+  -v open-webui:/app/backend/data \
+  --name open-webui \
+  --restart always \
+  ghcr.io/open-webui/open-webui:main
+7 http://localhost:3000
